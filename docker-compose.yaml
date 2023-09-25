@@ -5,22 +5,22 @@ services:
     image: postgres:14.1-alpine
     restart: always
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-#      - DB_NAME=call_db
+      POSTGRES_DB: "call_db"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
     ports:
       - '5432:5432'
     volumes:
       - pg_data:/var/lib/postgresql/data
   #pg_admin for managing easily db via web ui
-  pgadmin:
-    image: dpage/pgadmin4
-    restart: on-failure
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=alcanoid@example.com
-      - PGADMIN_DEFAULT_PASSWORD=Alcanoid!
-    ports:
-      - '80:80'
+#  pgadmin:
+#    image: dpage/pgadmin4
+#    restart: on-failure
+#    environment:
+#      - PGADMIN_DEFAULT_EMAIL=alcanoid@example.com
+#      - PGADMIN_DEFAULT_PASSWORD=Alcanoid!
+#    ports:
+#      - '80:80'
 
 volumes:
   pg_data:
