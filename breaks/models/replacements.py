@@ -4,21 +4,6 @@ from django.db import models
 User = get_user_model()
 
 
-class ReplacementStatus(models.Model):
-    code = models.CharField(verbose_name='Code', max_length=16, primary_key=True)
-    name = models.CharField(verbose_name='Name', max_length=32,)
-    sort = models.PositiveSmallIntegerField(verbose_name='Sorting', null=True, blank=True)
-    is_active = models.BooleanField(verbose_name='Activity', default=True)
-
-    class Meta:
-        verbose_name = 'Shift status'
-        verbose_name_plural = 'Shift statuses'
-        ordering = ('sort',)
-
-    def __str__(self):
-        return f'{self.code} for {self.name} '
-
-
 class ReplacementEmployee(models.Model):
     employee = models.ForeignKey(
         to=User, on_delete=models.CASCADE, related_name='replacements',
